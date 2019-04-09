@@ -30,8 +30,15 @@ app.get('/api/users', function(req,res) {
 });
 
 app.post('/api/users', function(req, res) {
-
-    console.log(req.body);
+    res.setHeader('Content-type', 'application/json');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Origin', '*.ampproject.org');
+    res.setHeader('AMP-Access-Control-Allow-Source-Origin', 'http://intellmo.com');
+    res.setHeader('Access-Control-Expose-Headers', 'AMP-Access-Control-Allow-Source-Origin');
+    // res.header("Access-Control-Allow-Origin", "*");
+    // res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+    // res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    // // console.log(req.body);
 
     names = req.body.name;
     mobiles = req.body.mobile;
