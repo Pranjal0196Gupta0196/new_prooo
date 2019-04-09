@@ -36,9 +36,9 @@ app.post('/api/users', function(req, res) {
     names = req.body.name;
     mobiles = req.body.mobile;
     email_ids = req.body.email_id;
-    if(res.status(200).json({
-        message: 'Thanks for reaching out. We would get back to you soon.'
-    })) {
+    // if(res.status(200).json({
+    //     message: 'Thanks for reaching out. We would get back to you soon.'
+    // })) {
 
 //    res.send(names + ' ' + mobiles + ' ' + email_ids);
 
@@ -59,9 +59,10 @@ app.post('/api/users', function(req, res) {
             }
             console.log(record.getId());
         });
-    }
-    else
-    {}
+    // }
+    // else
+    // {}
+    res.status(200).json({message : 'Thanks for reachinf out. We would get back to you soon'});
 });
 
 // start the server
