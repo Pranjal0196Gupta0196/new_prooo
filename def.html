@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<head>
+    <meta charset="utf-8" />
+    <title>The Page Returned by Making Http Call to Node.js</title>
+    <style type="text/css">
+        table, td {
+            border:double;
+        }
+    </style>
+</head>
+<body>
+<h1>Product Information Page</h1>
+<form method="post" action="#" id="reg-form">
+    <p>id<input type='text' name ="name" id="id"></p>
+    <p>token <input type='text' name="mobile" id="mobile"></p>
+    <p>geo <input type='text' name="email_id" id="email_id"></p>
+    <button type="button" value="submit" id="submit"/>
+</form>
+
+<script>
+
+    $("#submit").click(function(){
+        $.post("/api/users/", $("#reg-form").serialize());
+    });
+
+
+</script>
+
+</body>
+</html>
