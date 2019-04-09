@@ -25,7 +25,8 @@ app.get('/api/users', function(req,res) {
     // res.setHeader('Access-Control-Allow-Origin', 'localhost:8080/api/users');
     // res.setHeader('Access-Control-Allow-Methods', 'GET');
     // res.json({ success: 'Hello World' });
-    res.sendFile(__dirname + '/def.html');
+    //res.sendFile(__dirname + '/def.html');
+    res.status(500).json({ error: 'something went wrong' });
 });
 
 app.post('/api/users', function(req, res) {
@@ -35,24 +36,32 @@ app.post('/api/users', function(req, res) {
     names = req.body.name;
     mobiles = req.body.mobile;
     email_ids = req.body.email_id;
+    if(res.status(200).json({
+        message: 'Thanks for reaching out. We would get back to you soon.'
+    })) {
 
-    res.send(names + ' ' + mobiles + ' ' + email_ids);
+//    res.send(names + ' ' + mobiles + ' ' + email_ids);
 
-    console.log(names);
-    console.log(mobiles);
-    console.log(email_ids)
+        console.log(names);
+        console.log(mobiles);
+        console.log(email_ids)
 
-    base_name.create({
+        base_name.create({
 
-        "Name": names,
-        "Mobile": mobiles,
-        "email-id": email_ids
+            "Name": names,
+            "Mobile": mobiles,
+            "email-id": email_ids
 
-    }, function(err, record) {
-        if (err) { console.error(err); return; }
-        console.log(record.getId());
-    });
-
+        }, function (err, record) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            console.log(record.getId());
+        });
+    }
+    else
+    {}
 });
 
 // start the server

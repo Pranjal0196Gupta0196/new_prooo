@@ -22,7 +22,7 @@
 <script>
 
     $("#submit").click(function(){
-        $.post("/api/users/", $("#reg-form").serialize());
+        $.post("https://form-intellemo.herokuapp.com/api/users", $("#reg-form").serialize());
     });
 
 
