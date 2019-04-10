@@ -29,15 +29,27 @@ app.get('/api/users', function(req,res) {
     res.status(500).json({ error: 'something went wrong' });
 });
 
+app.use(function (req, res, next) {
+    let origin = req.header('origin').toLowerCase()
+    res.set('Access-Control-Allow-Origin: *");
+    res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With,Content-Type, Accept');
+    res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, HEAD, PUT');
+    res.set('Access-Control-Allow-Credentials', 'true');
+    res.set("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+    res.set("Access-Control-Expose-Headers: AMP-Access-Control-Allow-Source-Origin");
+    res.set("AMP-Access-Control-Allow-Source-Origin", 'https://intellmo.com');
+    next();
+});
+
 app.post('/api/users', function(req, res) {
-    res.header('Content-type', 'application/json');
-    res.header('Access-Control-Allow-Credentials', true);
-    res.header('Access-Control-Allow-Origin', '*.ampproject.org');
-    res.header('AMP-Access-Control-Allow-Source-Origin', 'http://intellmo.com');
-    res.header('Access-Control-Expose-Headers', 'AMP-Access-Control-Allow-Source-Origin');
-    // res.header("Access-Control-Allow-Origin", "*");
-     res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
-     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    // res.setHeader('Content-type', 'application/json');
+    // res.header('Access-Control-Allow-Credentials', true);
+    // res.header('Access-Control-Allow-Origin', '*.ampproject.org');
+    // res.header('AMP-Access-Control-Allow-Source-Origin', 'http://intellmo.com');
+    // res.header('Access-Control-Expose-Headers', 'AMP-Access-Control-Allow-Source-Origin');
+    // // res.header("Access-Control-Allow-Origin", "*");
+    //  res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+    // res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     // // console.log(req.body);
 
     names = req.body.name;
