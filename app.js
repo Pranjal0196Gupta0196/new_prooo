@@ -29,17 +29,17 @@ app.get('/api/users', function(req,res) {
     res.status(500).json({ error: 'something went wrong' });
 });
 
-app.use(function (req, res, next) {
-    let origin = req.header('origin').toLowerCase()
-    res.set('Access-Control-Allow-Origin: *");
-    res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With,Content-Type, Accept');
-    res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, HEAD, PUT');
-    res.set('Access-Control-Allow-Credentials', 'true');
-    res.set("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
-    res.set("Access-Control-Expose-Headers: AMP-Access-Control-Allow-Source-Origin");
-    res.set("AMP-Access-Control-Allow-Source-Origin", 'https://intellmo.com');
-    next();
-});
+// app.use(function (req, res, next) {
+//     let origin = req.header('origin').toLowerCase()
+//     res.set('Access-Control-Allow-Origin: *");
+//     res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With,Content-Type, Accept');
+//     res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, HEAD, PUT');
+//     res.set('Access-Control-Allow-Credentials', 'true');
+//     res.set("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+//     res.set("Access-Control-Expose-Headers: AMP-Access-Control-Allow-Source-Origin");
+//     res.set("AMP-Access-Control-Allow-Source-Origin", 'https://intellmo.com');
+//     next();
+// });
 
 app.post('/api/users', function(req, res) {
     // res.setHeader('Content-type', 'application/json');
