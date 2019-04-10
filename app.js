@@ -85,7 +85,7 @@ app.post('/api/users', function(req, res) {
     res.setheader('Access-Control-Allow-Credentials', true);
     res.setheader('Access-Control-Allow-Origin', '*.ampproject.org');
     res.setheader('Access-Control-Allow-Headers', 'Origin, X-Requested-With,Content-Type, Accept');
-    res.setheader('AMP-Access-Control-Allow-Source-Origin', 'https://intellmo.com');
+    res.setheader('AMP-Access-Control-Allow-Source-Origin: https://intellmo.com');
     res.setheader('Access-Control-Expose-Headers', 'AMP-Access-Control-Allow-Source-Origin');
     res.setheader("Access-Control-Allow-Origin", "*");
     res.setheader("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
