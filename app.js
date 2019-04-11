@@ -25,9 +25,9 @@ app.get('/api/users', function(req,res) {
     // res.setHeader('Access-Control-Allow-Origin', 'localhost:8080/api/users');
     // res.setHeader('Access-Control-Allow-Methods', 'GET');
     // res.json({ success: 'Hello World' });
-    //res.sendFile(__dirname + '/def.html');
-    var abc = "post only";
-    res.status(200).json(abc);
+    res.sendFile(__dirname + '/abc.html');
+    // var abc = "post only";
+    // res.status(200).json(abc);
 });
 
 
