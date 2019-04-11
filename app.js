@@ -25,7 +25,7 @@ app.get('/api/users', function(req,res) {
     // res.setHeader('Access-Control-Allow-Origin', 'localhost:8080/api/users');
     // res.setHeader('Access-Control-Allow-Methods', 'GET');
     // res.json({ success: 'Hello World' });
-    res.sendFile(__dirname + '/abc.html');
+  //  res.sendFile(__dirname + '/abc.html');
     // var abc = "post only";
     // res.status(200).json(abc);
 });
@@ -69,7 +69,7 @@ app.post('/api/users', function(req, res) {
              res.header('Access-Control-Allow-Credentials', true);
              res.header('Access-Control-Allow-Origin', '*.ampproject.org');
              res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With,Content-Type, Accept');
-             res.header('AMP-Access-Control-Allow-Source-Origin: http://form-intellemo.herokuapp.com/api/users');
+             res.header('AMP-Access-Control-Allow-Source-Origin: https://form-intellemo.herokuapp.com/api/users');
              res.header('Access-Control-Expose-Headers', 'AMP-Access-Control-Allow-Source-Origin');
              res.header("Access-Control-Allow-Origin", "*");
              res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
