@@ -24,14 +24,11 @@ Airtable.configure({
 const base = Airtable.base("appDLlpi8sMoel1Co");
     const base_name  = base("Applicants");
 
-app.get('/api/users', function(req,res) {
-    // res.setHeader('Access-Control-Allow-Origin', 'localhost:8080/api/users');
-    // res.setHeader('Access-Control-Allow-Methods', 'GET');
-    // res.json({ success: 'Hello World' });
-    res.sendFile(__dirname + '/abc.html');
-    // var abc = "post only";
-    // res.status(200).json(abc);
-});
+// app.get('/api/users', function(req,res) {
+//
+//    // res.sendFile(__dirname + '/abc.html');
+//
+// });
 
 
 app.post('/api/users',  multipart.fields([]), function(req, res) {
@@ -84,7 +81,7 @@ app.post('/api/users',  multipart.fields([]), function(req, res) {
             // }
             // console.log(record.getId());
 
-             res.status(200).json(req.body);
+           //  res.status(200).json(req.body);
         });
 
 
