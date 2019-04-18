@@ -1,3 +1,6 @@
+var multer = require('multer');
+var multipart = multer();
+
 var express = require('express');
 var app = express();
 var port = process.env.PORT || 2190;
@@ -19,23 +22,37 @@ Airtable.configure({
 });
 
 const base = Airtable.base("appDLlpi8sMoel1Co");
-const base_name  = base("Applicants");
+    const base_name  = base("Applicants");
 
 app.get('/api/users', function(req,res) {
     // res.setHeader('Access-Control-Allow-Origin', 'localhost:8080/api/users');
     // res.setHeader('Access-Control-Allow-Methods', 'GET');
     // res.json({ success: 'Hello World' });
-  //  res.sendFile(__dirname + '/abc.html');
+    res.sendFile(__dirname + '/abc.html');
     // var abc = "post only";
     // res.status(200).json(abc);
 });
 
 
-app.post('/api/users', function(req, res) {
+app.post('/api/users',  multipart.fields([]), function(req, res) {
     console.log(req.body);
     names = req.body.name;
     mobiles = req.body.mobile;
     email_ids = req.body.email_id;
+    var response = {
+        names: req.body.name ? req.body.name : '',
+        mobiles : req.body.mobile ? req.body.mobile:'',
+        email_ids : req.body.email_id ? req.body.email_id:''
+    };
+
+    res.setHeader('Content-type', 'application/json');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Origin', '*.ampproject.org');
+    //res.setHeader("AMP-Access-Control-Allow-Source-Origin:https://www.intellmo.com");
+    res.setHeader('AMP-Access-Control-Allow-Source-Origin', 'http://' + req.headers.host);
+    res.setHeader('Access-Control-Expose-Headers', 'AMP-Access-Control-Allow-Source-Origin');
+    res.json(response);
+
     // if(res.status(200).json({
     //     message: 'Thanks for reaching out. We would get back to you soon.'
     // })) {
@@ -50,7 +67,7 @@ app.post('/api/users', function(req, res) {
 
             "Name": names,
             "Mobile": mobiles,
-            "email-id": email_ids
+            "email_id": email_ids
 
         }, function (err, record) {
             if (err) {
@@ -65,27 +82,18 @@ app.post('/api/users', function(req, res) {
             //
             //     }
             // }
-            console.log(record.getId());
-             res.header('Access-Control-Allow-Credentials', true);
-             res.header('Access-Control-Allow-Origin', '*.ampproject.org');
-             res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With,Content-Type, Accept');
-             res.header('AMP-Access-Control-Allow-Source-Origin: https://form-intellemo.herokuapp.com/api/users');
-             res.header('Access-Control-Expose-Headers', 'AMP-Access-Control-Allow-Source-Origin');
-             res.header("Access-Control-Allow-Origin", "*");
-             res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
-             res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-            res.status(200).json(req.body);
+            // console.log(record.getId());
+            //  res.header('Access-Control-Allow-Credentials', true);
+            //  res.header('Access-Control-Allow-Origin', '*.ampproject.org');
+            //  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With,Content-Type, Accept');
+            //  res.header('AMP-Access-Control-Allow-Source-Origin: https://form-intellemo.herokuapp.com/api/users');
+            //  res.header('Access-Control-Expose-Headers', 'AMP-Access-Control-Allow-Source-Origin');
+            //  res.header("Access-Control-Allow-Origin", "https://form-intellemo.herokuapp.com/api/users");
+            //  res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+            //  res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+            // res.status(200).json(req.body);
         });
 
-    // res.setheader('Access-Control-Allow-Credentials', true);
-    // res.setheader('Access-Control-Allow-Origin', '*.ampproject.org');
-    // res.setheader('Access-Control-Allow-Headers', 'Origin, X-Requested-With,Content-Type, Accept');
-    // res.setheader('AMP-Access-Control-Allow-Source-Origin: https://intellmo.com');
-    // res.setheader('Access-Control-Expose-Headers', 'AMP-Access-Control-Allow-Source-Origin');
-    // res.setheader("Access-Control-Allow-Origin", "*");
-    // res.setheader("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
-    // res.setheader("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-    // res.status(200).json({message : 'Thanks for reachinf out. We would get back to you soon'});
 
 });
 
